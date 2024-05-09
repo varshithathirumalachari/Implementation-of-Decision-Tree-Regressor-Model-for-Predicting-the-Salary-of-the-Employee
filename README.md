@@ -1,5 +1,7 @@
 # Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee
 
+## DATE:
+
 ## AIM:
 To write a program to implement the Decision Tree Regressor Model for Predicting the Salary of the Employee.
 
@@ -7,74 +9,100 @@ To write a program to implement the Decision Tree Regressor Model for Predicting
 1. Hardware – PCs
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
-## Algorithm
-1.Import pandas as pd and import the required dataset.
+## Algorithm:
 
-2.Calculate the null values in the dataset.
+1. Import the required libraries.
 
-3.Import the LabelEncoder from sklearn.preprocessing
+2. Read the data frame using pandas.
+3. Get the information regarding the null values present in the dataframe.
+4. Apply label encoder to the non-numerical column inoreder to convert into numerical values.
+5. Determine training and test data set.
+6. Apply decision tree regression on to the dataframe.
+7. Get the values of Mean square error, r2 and data prediction.
 
-4.Convert the string values to numeric values.
-
-5.Import train_test_split from sklearn.model_selection.
-
-6.Assign the train and test dataset.
-
-7.Import DecisionTreeRegressor from sklearn.tree.
-
-8.Import metrics from sklearn.metrics.
-
-9.Calculate the MeanSquareError.
-
-10.Apply the metrics to the dataset.
-
-11.Predict the output for the required values.
 ## Program:
-```
+```python
 /*
 Program to implement the Decision Tree Regressor Model for Predicting the Salary of the Employee.
 Developed by: VARSHITHA A T
-RegisterNumber: 212221040176 
+RegisterNumber:  21221040176
 */
+
 import pandas as pd
-data = pd.read_csv("/content/Salary.csv")
-data.head()
-data.info()
-data.isnull().sum()
+data=pd.read_csv("Salary.csv")
+print("\nThe first five data of the Salary.csv:")
+print(data.head())
+print("\nThe DataFrame:")
+print(data.info())
+print("\nCount the number of NaN values:")
+print(data.isnull().sum())
+
 from sklearn.preprocessing import LabelEncoder
-le = LabelEncoder()
-data["Position"]= le.fit_transform(data["Position"])
-data.head()  
-x= data[["Position","Level"]]
-y= data["Salary"]
+le=LabelEncoder()
+data["Position"]=le.fit_transform(data["Position"])
+print("\nThe first five data for Position:")
+print(data.head())
+
+x=data[["Position","Level"]]
+y=data["Salary"]
+
 from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state=2)
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=2)
+
 from sklearn.tree import DecisionTreeRegressor
-dt = DecisionTreeRegressor()
+dt=DecisionTreeRegressor()
 dt.fit(x_train,y_train)
 y_pred=dt.predict(x_test)
+
 from sklearn import metrics
-mse = metrics.mean_squared_error(y_test,y_pred)
-mse
+mse=metrics.mean_squared_error(y_test,y_pred)
+print("\nThe Mean Squared Error:")
+print(mse)
+
 r2=metrics.r2_score(y_test,y_pred)
-r2
-dt.predict([[5,6]])
+print("\nCoefficient of Determination:")
+print(r2)
+
+print("\nPrediction Value:")
+print(dt.predict([[5,6]]))
+
 ```
+
 ## Output:
-## HEAD
-![image](https://github.com/varshithathirumalachari/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/131793193/23bbd405-dda3-403b-be42-6694c102a41f)
-## INFO
-![image](https://github.com/varshithathirumalachari/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/131793193/c96cd9cf-547b-4181-a661-9d5948b92802)
-## ISNULL
-![image](https://github.com/varshithathirumalachari/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/131793193/32e6687d-671b-4788-b6a2-c0bddeb51168)
-## LABELENCODER
-![image](https://github.com/varshithathirumalachari/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/131793193/988f9f4e-c6cc-4d07-a85e-544c1a418eef)
-## MSE
-![image](https://github.com/varshithathirumalachari/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/131793193/0770a1a8-db06-4f35-b014-32ffa6e1c4c6)
-## R2
-![image](https://github.com/varshithathirumalachari/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/131793193/66022a8d-660f-4dfc-bf82-3469ff17614f)
-## PREDICT
-![image](https://github.com/varshithathirumalachari/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/131793193/36cba012-4e77-4e5f-8cbe-1b4a898f3fed)
+
+### The first five data of the Salary.csv:
+
+![image](https://github.com/varshithathirumalachari/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/131793193/8a91e113-609a-4069-80f6-1f73119f05a0)
+
+
+### The DataFrame:
+
+![image](https://github.com/varshithathirumalachari/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/131793193/5f7f778f-f57f-4328-9c0e-fb1abe17c281)
+
+
+### Count the number of NaN values:
+
+![image](https://github.com/varshithathirumalachari/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/131793193/7fd597ef-e741-47b7-a482-3f987239e850)
+
+
+### The first five data for Position:
+
+![image](https://github.com/varshithathirumalachari/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/131793193/6b4e0c4b-79c3-45d4-857e-9dfda29ec948)
+
+
+### The Mean Squared Error:
+![image](https://github.com/varshithathirumalachari/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/131793193/34f47898-71c7-4388-a767-e3b53e7b29fc)
+
+
+### Coefficient of Determination:
+
+![image](https://github.com/varshithathirumalachari/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/131793193/fc7b4c76-3c11-443c-a010-e339d9bb20a0)
+
+
+### Prediction Value:
+
+![image](https://github.com/varshithathirumalachari/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/131793193/d03be8f5-fe32-4aaa-8ae7-0e9d317b0840)
+
 
 ## Result:
 Thus the program to implement the Decision Tree Regressor Model for Predicting the Salary of the Employee is written and verified using python programming.
